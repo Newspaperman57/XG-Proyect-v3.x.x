@@ -68,9 +68,9 @@ class Spy extends Missions
 
             $CurrentSpyLvl = OfficiersLib::getMaxEspionage($current_data['research_espionage_technology'], $current_data['premium_officier_technocrat']);
             $TargetSpyLvl = OfficiersLib::getMaxEspionage($target_data['research_espionage_technology'], $target_data['premium_officier_technocrat']);
-            $fleet = FleetsLib::getFleetShipsArray($fleet_row['fleet_array']);
+            $attackingFleet = FleetsLib::getFleetShipsArray($fleet_row['fleet_array']);
 
-            foreach ($fleet as $id => $amount) {
+            foreach ($attackingFleet as $id => $amount) {
                 if ($id == "210") {
                     $LS = $amount;
                     $SpyToolDebris = $LS * 300;
@@ -101,7 +101,7 @@ class Spy extends Missions
                     }
 
                     $TargetChances = mt_rand(0, $TargetForce);
-                    $SpyerChances = mt_rand(0, 100);
+                    $SpyerChances = mt_rand(1, 100);
 
                     if ($TargetChances >= $SpyerChances) {
                         Functions::sendMessage(
@@ -186,6 +186,7 @@ class Spy extends Missions
                             'planet_id' => $target_data['planet_id'],
                         ]);
 
+                        $this->Missions_Model->updateLostShipsAndDefensePoints($fleet_row['fleet_owner'], $attackingFleet);
                         parent::removeFleet($fleet_row['fleet_id']);
                     } else {
                         parent::returnFleet($fleet_row['fleet_id']);
