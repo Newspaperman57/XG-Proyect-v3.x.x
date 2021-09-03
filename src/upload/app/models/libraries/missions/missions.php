@@ -13,41 +13,12 @@ namespace App\models\libraries\missions;
 
 use App\core\Model;
 use App\libraries\FleetsLib;
-use App\libraries\Statistics_library;
 
 /**
  * Missions Class
  */
 class Missions extends Model
 {
-    /**
-     * updateLostShipsAndDefensePoints
-     *
-     * @param integer $player_id   Player id
-     * @param array   $lost  Array of players lost units
-     *
-     * @return void
-     */
-    public function updateLostShipsAndDefensePoints($player_id, $lost)
-    {
-      $shippoints = 0;
-      $defensepoints = 0;
-      foreach ($lost as $unit => $lostcount) {
-        if ($unit >= 401) {
-          $defensepoints += Statistics_library::calculatePoints($unit, 1) * $lostcount;
-        }
-        else {
-          $shippoints += Statistics_library::calculatePoints($unit, 1) * $lostcount;
-        }
-      }
-      $this->db->query(
-          "UPDATE " . USERS_STATISTICS . " AS us SET
-          us.`user_statistic_ships_points` = us.`user_statistic_ships_points` - '" . $shippoints . "' ,
-          us.`user_statistic_defenses_points` = us.`user_statistic_defenses_points` - '" . $defensepoints . "'
-          WHERE us.`user_statistic_user_id` = '" . $player_id . "'"
-      );
-    }
-
     /**
      * Delete a fleet by its ID
      *
@@ -462,8 +433,8 @@ class Missions extends Model
                             FROM " . PLANETS . " AS pc2
                             WHERE pc2.`planet_galaxy` = '" . $data['coords']['galaxy'] . "' AND
                                             pc2.`planet_system` = '" . $data['coords']['system'] . "' AND
-                                            pc2.`planet_planet` = '" . $data['coords']['planet'] . " AND
-                                            pc2.`planet_type` = 1') AS galaxy_count,
+                                            pc2.`planet_planet` = '" . $data['coords']['planet'] . "' AND
+                                            pc2.`planet_type` = '1') AS galaxy_count,
                     (SELECT `research_astrophysics`
                             FROM " . RESEARCH . "
                             WHERE `research_user_id` = '" . $data['user_id'] . "') AS astro_level"
