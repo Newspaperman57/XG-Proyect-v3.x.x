@@ -10,6 +10,7 @@ RUN set -ex; \
 		libjpeg-dev \
 		libpng-dev \
 		libzip-dev \
+		sendmail \
 	; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
@@ -30,6 +31,8 @@ RUN set -ex; \
 	rm -rf /var/lib/apt/lists/*
 
 # set recommended PHP.ini settings
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
 		echo 'opcache.memory_consumption=128'; \

@@ -33,7 +33,7 @@ final class ErrorHandler
     {
         // report all errors
         error_reporting(E_ALL);
-        ini_set('display_errors', '0');
+        ini_set('display_errors', 'on');
 
         $this->createNewDebugObject();
 
