@@ -1,23 +1,20 @@
 version: "3.8"
 services:
-  xgproyect-v3:
+  xgproyect_v3:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: xgproyect-v3
-    ports:
-      - 127.0.0.1:80:80
-      - 127.0.0.1:443:443
+    restart: unless-stopped
     volumes:
       - ./src/upload:/var/www/html
     depends_on:
       - db
     networks:
       - xgp_network
+      - docker_backend
   db:
     image: mysql:5.7
-    ports:
-      - 127.0.0.1:33060:3306 # change ip if required
+    restart: unless-stopped
     volumes:
       - ./data:/docker-entrypoint-initdb.d
     environment:
@@ -28,13 +25,15 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-        - "8081:80"
+      - "8081:80"
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: db
     networks:
-        - xgp_network
+      - docker_backend
+      - xgp_network
 
 networks:
     xgp_network:
-      external: true
+    docker_backend:
+      external: True

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta name="language" content="es">
+    <meta name="language" content="en">
     <meta name="author" content="XG Proyect">
     <meta name="publisher" content="XG Proyect">
     <meta name="copyright" content="XG Proyect">
@@ -11,6 +11,7 @@
     <meta name="Description" content="{hm_description}">
     <meta name="robots" content="index,follow">
     <meta name="Revisit" content="After 14 days">
+    <script data-ad-client="ca-pub-9145477637198648" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <title>{servername}</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="{css_path}reset.css">
@@ -242,7 +243,7 @@
 					<div id="submitWrap">
 						<input class="validate[required]" type="checkbox" id="agb" name="agb">
                         <label>
-                            <span>{hm_accept} <a class="" target="_blank" href="index.php?page=terms" title="{hm_terms}">{hm_terms}</a> {hm_and} <a class="" target="_blank" href="index.php?page=policy" title="{hm_policy}">{hm_policy}</a></span>
+                            <span>{hm_accept} <a class="" target="_blank" href="index.php?page=terms" title="{hm_terms}">{hm_terms}</a> {hm_and} <a class="" target="_blank" href="https://cnf.dk/policy.html" title="{hm_policy}">{hm_policy}</a></span>
 						</label>
                         <div onclick="if($.validationEngine.submitValidation(&#39;subscribeForm&#39;)) {document.forms[&#39;subscribeForm&#39;].submit();}">
                             <input type="submit" onclick="setServerCookie(&#39;subscribeForm&#39;);setUserNameCookie(&#39;subscribeForm&#39;);" id="regSubmit" value="{hm_register}">
